@@ -3,55 +3,65 @@
   color: #f0f0f0;
   min-height: 100vh;
   padding: 2rem;
+}
 
-  .main-title {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: #00ffe0;
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 2px;
-  }
+/* ===== Titolo principale ===== */
+.main-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #00ffe0;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+}
 
-  .game-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
+/* ===== Container delle card ===== */
+.game-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
 
-    .game-card {
-      background: linear-gradient(135deg, #1b1b3a, #000c1f);
-      border: 2px solid #00ffe0;
-      border-radius: 1rem;
-      padding: 1rem;
-      width: 280px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
+/* ===== Card singolo gioco ===== */
+.game-card {
+  background: linear-gradient(135deg, #1b1b3a, #000c1f);
+  border: 2px solid #00ffe0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 260px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 255, 224, 0.2);
+}
 
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px #00ffe0;
-      }
+.game-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #00ffe0;
+}
 
-      img {
-        width: 100%;
-        height: 160px;
-        object-fit: cover;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
-      }
+/* ===== Immagine come icona ===== */
+.game-card img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  border: 2px solid #00ffe0;
+}
 
-      h2 {
-        font-size: 1.5rem;
-        color: #00ffe0;
-        margin-bottom: 0.5rem;
-      }
+/* ===== Titolo del gioco ===== */
+.game-card h2 {
+  font-size: 1.5rem;
+  color: #00ffe0;
+  margin-bottom: 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+}
 
-      p {
-        font-size: 0.9rem;
-        color: #ccc;
-      }
-    }
-  }
+/* ===== Descrizione gioco ===== */
+.game-card p {
+  font-size: 0.9rem;
+  color: #ccc;
 }
