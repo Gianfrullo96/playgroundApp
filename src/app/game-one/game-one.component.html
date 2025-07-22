@@ -1,0 +1,61 @@
+<div class="home-page">
+  <div class="container">
+    <h1 class="game-title">💘 Harem Challenge Arena 💘</h1>
+
+    <div class="button-container">
+      <button type="button" class="game-turn-btn" (click)="generaPartecipanti()">🧪 Genera Partecipanti</button>
+      <button type="button" class="game-turn-btn" (click)="generaPartecipanti_gymEdition()">🧪 Genera Partecipanti
+        GymEdition</button>
+
+    </div>
+
+
+    <div class="game-container" *ngIf="gameInCorso">
+      <div *ngFor="let match of currentChallenge" class="match-row">
+        <div class="match-text">
+          <h1>turn number {{currentTurn}}</h1>
+          <p><strong>👨‍🦰 {{ match.uomo.nome }}</strong> vs <strong>{{ match.donna.nome }}</strong></p>
+          <p><strong>Azione:</strong> <em>{{ match.azione.azioniSingole }}</em></p>
+          <p><strong>Salute:</strong> <em>{{ match.uomo.salute }}</em></p>
+          <p>🕒 {{ match.tempo }}</p>
+
+          <div *ngIf="match.azione.immagine" class="azione-img-container">
+            <img [src]="match.azione.immagine" alt="Immagine Azione" class="azione-img" />
+          </div>
+        </div>
+
+        <div class="match-image">
+          <img [src]="match.donna.urlImg" alt="{{ match.donna.nome }}" class="profile-pic" />
+        </div>
+      </div>
+
+      <!-- 👇 ancora invisibile in fondo -->
+      <div #scrollAnchor></div>
+      <div class="button-container">
+        <button type="button" (click)="nextTurnGame()" [disabled]="gameOver" class="game-action-btn">
+          🎮 Prossimo Turno
+        </button>
+        <button type="button" (click)="resetAll()" class="game-action-btn">
+          🔄 Resetta Gioco
+        </button>
+        <button type="button" (click)="newTemporizedGame()" [disabled]="gameOver || isTimedGameRunning"
+          class="game-action-btn">
+          🎮 TemporizedGamePostEdit
+        </button>
+
+      </div>
+
+
+
+      <span *ngIf="urDead" class="death-message">💀 hai sborrato!</span>
+
+      <div *ngIf="gameOver" class="result">
+        <pre>{{ gameResultMessage }}</pre>
+        <p><strong>👨‍🦰 Vita Rimasta:</strong> {{ men.salute }}</p>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

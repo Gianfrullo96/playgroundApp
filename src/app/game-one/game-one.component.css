@@ -1,0 +1,272 @@
+/* ===== Reset & base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: #121a2f;
+  color: #e0e0e0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Container principale ===== */
+.home-page {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* ===== Titolo ===== */
+.game-title {
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  text-align: center;
+  color: #ff79c6;
+  text-shadow: 0 0 12px #ff79c6, 0 0 28px #ff44aa;
+  margin-bottom: 3.5rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  user-select: none;
+}
+
+/* ===== Pulsanti ===== */
+.button-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.game-turn-btn,
+.game-action-btn {
+  background: #212945;
+  border: 2px solid #ff79c6;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  min-width: unset;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  user-select: none;
+}
+
+.game-turn-btn:hover,
+.game-action-btn:hover {
+  background: #ff79c6;
+  color: #121a2f;
+  box-shadow: 0 0 20px #ff79c6;
+}
+
+.game-turn-btn:disabled,
+.game-action-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ===== Lista sfide ===== */
+.game-container {
+  background: #1a2147cc;
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 0 35px #ff79c6bb;
+}
+
+/* ===== Singolo match ===== */
+.match-row {
+  display: flex;
+  align-items: flex-start; /* modificato per allineare in alto */
+  gap: 2rem;
+  padding: 1.8rem 2rem;
+  margin-bottom: 2rem;
+  background: #222b54;
+  border-radius: 20px;
+  box-shadow: inset 0 0 20px #ff79c6bb;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: default;
+}
+
+.match-row:hover {
+  box-shadow: 0 0 35px #ff79c6ee;
+  transform: translateY(-4px);
+}
+
+/* ===== Immagine profilo (donna) grande e rettangolare ===== */
+.match-image {
+  flex-shrink: 0;
+  width: 180px;
+  height: 240px;
+  overflow: hidden;
+  border-radius: 12px; /* non tondo, angoli arrotondati */
+  border: 4px solid #ff79c6;
+  box-shadow: 0 0 28px #ff79c6cc;
+  transition: box-shadow 0.3s ease;
+}
+
+.match-image:hover {
+  box-shadow: 0 0 48px #ff79c6ee;
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  display: block;
+  border-radius: 12px;
+}
+
+/* ===== Testo sfida ===== */
+.match-text {
+     /* flex: 1; */
+    display: flex;
+    color: #e0e0e0;
+    font-weight: 500;
+    line-height: 1.3;
+    -webkit-user-select: none;
+    user-select: none;
+    flex-direction: column;
+}
+
+.match-text h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffa3d1;
+  margin-bottom: 0.7rem;
+}
+
+.match-text p {
+  margin: 0.35rem 0;
+  font-size: 1.1rem;
+}
+
+/* ===== Immagine azione più piccola e circolare ===== */
+.azione-img-container {
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  margin-left: 0.5rem; /* ridotto margine */
+  align-self: flex-start; /* allinea immagine azione in alto */
+}
+
+.azione-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #a3d1ff;
+  box-shadow: 0 0 20px #a3d1ffcc;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.azione-img:hover {
+  transform: scale(1.3);
+}
+
+/* ===== Messaggi di stato ===== */
+.death-message {
+  font-size: 2.6rem;
+  text-align: center;
+  color: #ff4f4f;
+  margin-top: 3rem;
+  text-shadow: 0 0 18px #ff4f4f;
+  animation: shake 0.6s infinite alternate;
+  user-select: none;
+}
+
+@keyframes shake {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+/* ===== Risultati finali ===== */
+.result {
+  background: #1f2660cc;
+  padding: 1.4rem 1.8rem;
+  border-radius: 20px;
+  box-shadow: 0 0 28px #ff79c6cc;
+  margin-top: 2.5rem;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.15rem;
+  white-space: pre-wrap;
+  user-select: none;
+}
+
+.result pre {
+  margin-top: 0.6rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* ===== Responsive (Mobile first) ===== */
+@media (max-width: 850px) {
+  .match-row {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    gap: 1.2rem;
+  }
+
+  .match-image {
+    width: 70vw;
+    max-width: 320px;
+    height: auto;
+    border-radius: 14px;
+  }
+
+  .profile-pic {
+    height: auto;
+  }
+
+  .azione-img-container {
+    width: 70px;
+    height: 70px;
+    margin-left: 0;
+    align-self: center; /* centra immagine azione nel mobile */
+  }
+  
+  .match-text {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .match-text h1 {
+    font-size: 1.3rem;
+  }
+
+  .match-text p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .button-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .game-turn-btn,
+  .game-action-btn {
+    width: 100%;
+    min-width: unset;
+  }
+}
