@@ -15,6 +15,8 @@ export class GameTwoComponent implements OnInit {
 
   }
   ambienti: AmbienteGioco[] = [];
+  roomOrderOk:boolean= false;
+roomOrder: string[] = [];
 
   //nome- salute- voto- pic
   women: WomanGame2[] = [new WomanGame2('', '', 10)];
@@ -156,6 +158,8 @@ export class GameTwoComponent implements OnInit {
 
   removeCavalleFromTheRoom() {
     this.ambienti.forEach(a => a.occupanti = []);
+    this.roomOrder=[];
+    this.roomOrderOk=false;
   }
 
 
@@ -168,6 +172,25 @@ export class GameTwoComponent implements OnInit {
   onGoToHome() {
     this.router.navigate(["/"]);
   }
+
+
+
+onChooseRoomOrder() {
+  if (this.ambienti && Array.isArray(this.ambienti)) {
+    const shuffled = [...this.ambienti];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    this.roomOrder = shuffled.map((el, index) => `${index + 1}. ${el.nome}`);
+    this.roomOrderOk = true;
+  } else {
+    this.roomOrder = [];
+    this.roomOrderOk = false;
+  }
+}
+
 
 
 

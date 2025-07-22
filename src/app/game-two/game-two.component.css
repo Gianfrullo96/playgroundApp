@@ -256,3 +256,25 @@
     height: 140px;
   }
 }
+
+.player-course {
+  margin-top: 2rem;
+  background-color: #1b1b2f;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 2px solid #ff80bf;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 12px rgba(0, 255, 224, 0.3);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.room-line {
+  font-size: 1rem;
+  color: #ff80bf;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
