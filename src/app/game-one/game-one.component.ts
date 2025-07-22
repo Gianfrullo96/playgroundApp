@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Donna } from '../model/donna';
 import { Uomo } from '../model/uomo';
 import { AzioniSingole } from '../model/azioniSingole';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-one',
@@ -9,6 +10,11 @@ import { AzioniSingole } from '../model/azioniSingole';
   styleUrls: ['./game-one.component.css']
 })
 export class GameOneComponent {
+
+
+  constructor(private router: Router) {
+
+  }
 
   azione1 = 'limone';
   azione2 = 'sega';
@@ -343,6 +349,9 @@ export class GameOneComponent {
   }
 
 
+  onGoToHome() {
+    this.router.navigate(["/"]);
+  }
 
 }
 

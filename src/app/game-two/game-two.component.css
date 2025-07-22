@@ -1,0 +1,258 @@
+/* ===== Titolo hot & futuristico ===== */
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ff4ecf;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 10px #ff4ecf, 0 0 20px #a7006e;
+}
+
+/* ===== Contenitore ambienti ===== */
+.ambienti-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+/* ===== Scheda ambiente sexy ===== */
+.ambiente-card {
+  background: linear-gradient(145deg, #1e1e2f, #2a2a3d);
+  border: 1px solid #ff4ecf;
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem;
+  width: 240px;
+  box-shadow: 0 4px 12px rgba(255, 78, 207, 0.25);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.ambiente-card:hover {
+  box-shadow: 0 8px 25px rgba(255, 78, 207, 0.4);
+  transform: translateY(-4px);
+}
+
+.ambiente-card h3 {
+  margin: 0 0 0.6rem 0;
+  font-size: 1.2rem;
+  color: #ff99dd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ambiente-card .tipo {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #bbb;
+  font-style: italic;
+}
+
+.ambiente-card p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #ddd;
+}
+
+.ambiente-card strong {
+  color: #ff66c4;
+}
+
+/* ===== Linea divisoria sexy ===== */
+.section-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #ff4ecf, transparent);
+  margin: 2.5rem 0;
+}
+
+/* ===== Contenitore cavalle ===== */
+.cavalle-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+  justify-items: center;
+}
+
+/* ===== Cavalla card cyber-pink ===== */
+.cavalla-card {
+  background: linear-gradient(160deg, #1b1b2f, #2c2c45);
+  border-radius: 14px;
+  padding: 1rem;
+  width: 180px;
+  box-shadow: 0 5px 14px rgba(255, 78, 207, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.cavalla-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(255, 78, 207, 0.3);
+}
+
+.cavalla-img {
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 0.8rem;
+  border: 2px solid #ff4ecf;
+}
+
+.cavalla-card h3 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  color: #ff80bf;
+}
+
+.cavalla-card p {
+  font-size: 0.95rem;
+  color: #ff4ecf;
+  font-weight: 600;
+}
+
+.cavalla-card strong {
+  color: #ff0077;
+}
+
+/* ===== Lista occupanti spicy ===== */
+.occupanti-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 14px;
+  justify-content: center;
+}
+
+.occupante-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #2b2b40, #1e1e2f);
+  border-radius: 12px;
+  padding: 14px;
+  width: 130px;
+  box-shadow: 0 5px 14px rgba(255, 78, 207, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.occupante-card:hover {
+  transform: scale(1.07);
+}
+
+.occupante-img {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 2px solid #ff4ecf;
+}
+
+.occupante-name {
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  color: #ff99dd;
+}
+
+/* ===== Pulsanti spicy ===== */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 2.5rem 0;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  background: linear-gradient(to right, #ff4ecf, #9c27b0);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(255, 78, 207, 0.3);
+}
+
+.action-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 78, 207, 0.4);
+}
+
+.action-btn:active {
+  transform: scale(0.98);
+  background: linear-gradient(to right, #c2185b, #6a1b9a);
+}
+
+/* ===== Header app ===== */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a2e;
+  color: #ff99dd;
+  padding: 1.2rem 2rem;
+  border-bottom: 4px solid #ff4ecf;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-bottom: 20px;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* ===== Navbar futuristica ===== */
+.nav-buttons {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.nav-btn {
+  background-color: #2e2e40;
+  color: #ff80bf;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: #4a4a66;
+}
+
+/* ===== Responsive spicy ===== */
+@media (max-width: 600px) {
+  .ambienti-container {
+    justify-content: flex-start;
+  }
+
+  .ambiente-card {
+    width: 100%;
+  }
+
+  .cavalle-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .cavalla-card {
+    width: 140px;
+  }
+
+  .cavalla-img {
+    height: 140px;
+  }
+}

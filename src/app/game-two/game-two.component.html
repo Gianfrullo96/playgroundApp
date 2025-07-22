@@ -1,1 +1,48 @@
-<p>game-two works!</p>
+<header class="app-header">
+    <h1 class="app-title">🎮 Game Two</h1>
+    <nav class="nav-buttons">
+        <button class="nav-btn" (click)="onShowCavalleContainer()">Cavalle</button>
+        <button class="nav-btn" (click)="onPutCavalleIntoRoom()">Riempi stanze</button>
+        <button class="nav-btn" (click)="onRemoveCavalleFromRoom()">Svuota stanze</button>
+        <button class="nav-btn" (click)="onGoToHome()">Home</button>
+    </nav>
+</header>
+<div class="ambienti-container">
+    <div *ngFor="let ambiente of ambienti" class="ambiente-card">
+        <h3>{{ ambiente.nome }} <span class="tipo">({{ ambiente.tipo }})</span></h3>
+        <p>👥 Max occupanti: <strong>{{ ambiente.maxOccupanti }}</strong></p>
+
+        <div *ngIf="ambiente.occupanti && ambiente.occupanti.length > 0" class="occupanti-list">
+            👩‍👧‍👧 Dentro:
+            <div class="occupanti-list">
+                <div *ngFor="let occupante of ambiente.occupanti" class="occupante-card">
+                    <img [src]="occupante.profPic" [alt]="occupante.name" class="occupante-img" />
+                    <span class="occupante-name">{{ occupante.name }}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="button-container">
+    <button class="action-btn" (click)="onShowCavalleContainer()">
+        Mostra le cavalle
+    </button>
+    <button class="action-btn" (click)="onPutCavalleIntoRoom()">
+        Riempi le stanze
+    </button>
+    <button class="action-btn" (click)="onRemoveCavalleFromRoom()">
+        Svuota le stanze
+    </button>
+</div>
+
+
+<hr class="section-divider" />
+
+<div class="cavalle-container" *ngIf="showCavalleContainer">
+    <div *ngFor="let donna of women" class="cavalla-card">
+        <img [src]="donna.profPic" [alt]="donna.name" class="cavalla-img" />
+        <h3>{{ donna.name }}</h3>
+        <p>❤️ Voto: <strong>{{ donna.value }}</strong></p>
+    </div>
+</div>
