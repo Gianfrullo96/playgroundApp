@@ -165,6 +165,14 @@ export class GameOneComponent {
       { name: 'Luciacosta', image: 'assets/img/luciacosta.jpg', voto: 0 },
       { name: 'Magnani', image: 'assets/img/magnani.jpg', voto: 0 },
       { name: 'Sofipale', image: 'assets/img/sofipale.jpg', voto: 0 },
+      { name: 'Brusi', image: 'assets/img/brusi.jpg', voto: 0 },
+  { name: 'Fantini', image: 'assets/img/fantini.jpg', voto: 0 },
+  { name: 'Gine', image: 'assets/img/gine.jpg', voto: 0 },
+  { name: 'Marrico', image: 'assets/img/marrico.jpg', voto: 0 },
+  { name: 'Masotti', image: 'assets/img/masotti.jpg', voto: 0 },
+  { name: 'Rebbireb', image: 'assets/img/rebbireb.jpg', voto: 0 },
+  { name: 'RusalenGrande', image: 'assets/img/rusalenGrande.jpg', voto: 0 },
+  { name: 'RusalenPiccola', image: 'assets/img/rusalenPiccola.jpg', voto: 0 }
 
     ];
 
