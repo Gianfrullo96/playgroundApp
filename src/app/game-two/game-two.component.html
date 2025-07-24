@@ -21,6 +21,7 @@
                  class="occupante-img"
                  (click)="onZoomImage(occupante.profPic)" />
             <span class="occupante-name">{{ occupante.name }}</span>
+      <span *ngIf="occupante.action" class="occupante-action">{{ occupante.action }}</span>
         </div>
     </div>
 </div>
@@ -41,6 +42,17 @@
 </div>
 
 
+<div class="aiutante" *ngIf="helper.name !== ''">
+  <span class="helper-name">{{ helper.name }}</span>
+  <span class="helper-info">
+    <span class="helper-dimensions">{{ helper.dimensions }} CM</span>
+    <span class="helper-emoji">🧍</span>
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" [style.width.%]="((helper.dimensions - 12) / (25 - 12)) * 100"></div>
+    </div>
+  </span>
+</div>
+
 
 <div class="button-container">
     <button class="action-btn" (click)="onShowCavalleContainer()">
@@ -52,11 +64,17 @@
       <button class="action-btn" (click)="onChooseRoomOrder()">
         Genera ordine stanze
     </button>
+       <button class="action-btn" (click)="onGenerateAction()">
+        Genera Azioni
+    </button>
+       <button class="action-btn" (click)="onGenerateHelper()">
+        Genera Aiutante
+    </button>
     <button class="action-btn" (click)="onRemoveCavalleFromRoom()">
         Svuota le stanze
     </button>
+     
 </div>
-
 
 
 <hr class="section-divider" />

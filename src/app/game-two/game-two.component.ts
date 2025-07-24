@@ -3,6 +3,7 @@ import { AmbienteGioco } from '../model/secondoGioco/ambiente-gioco.model';
 import { AmbienteTipo } from '../model/secondoGioco/ambiente-tipo.enum';
 import { WomanGame2 } from '../model/secondoGioco/womanGame2';
 import { Router } from '@angular/router';
+import { faker } from '@faker-js/faker';
 
 @Component({
   selector: 'app-game-two',
@@ -19,7 +20,7 @@ export class GameTwoComponent implements OnInit {
   roomOrder: string[] = [];
 
   //nome- salute- voto- pic
-  women: WomanGame2[] = [new WomanGame2('', '', 10)];
+  women: WomanGame2[] = [new WomanGame2('', '', 10,'')];
 
   focusAmbiente(stanzaNome: string) {
     const id = this.sanitizeId(stanzaNome);
@@ -153,7 +154,7 @@ export class GameTwoComponent implements OnInit {
 
     // Mappa ogni oggetto donna nel formato Donna richiesto
     this.women = defaultWomenData.map(
-      donna => new WomanGame2(donna.name, donna.image, donna.voto)
+      donna => new WomanGame2(donna.name, donna.image, donna.voto, '')
     );
 
   }
@@ -237,6 +238,83 @@ export class GameTwoComponent implements OnInit {
     this.zoomedImageUrl = null;
   }
 
+  azioni: string[] = [
+    'bacio francese',
+    'dita in gola',
+    'sfregare uccello in faccia',
+    'leccare ascelle',
+    'leccare orello donna',
+    'limone',
+    'sega',
+    'spit in mouth M a F',
+    'spit in mouth F to M',
+    'leccare buco culo uomo',
+    'bocchino senza mani',
+    'bocchino con mani',
+    'ditalino easy',
+    'ditalino hard',
+    'leccata di figa',
+    'bocchino fuckface',
+    'bocchino con dito in culo',
+    'ditalino bocchino',
+    '69 position',
+    'missionary',
+    'cavalcade',
+    'pecorina',
+    'appesa',
+    'deepthroat',
+    'drinksquirt',
+    'soft anal',
+    'inverse penetration XL',
+    'inverse penetration L',
+    'inverse penetration S',
+    'armFuck F',
+    ' gentle ball kicks',
+    'trampling',
+    'double penetration',
+    'face sitting',
+    'anal fisting',
+    'reverse cowgirl',
+    'masturbazione con oggetti',
+    'dominazione con piedi',
+    'cosplay free',
+    'assist: CULO E FIGA',
+    'assist: CULO E BOCCA',
+    'assist: CULO E CULO',
+    'assist: BOCCA E FIGA',
+    'assist: LIMONE E  ASSIST FIGA',
+    'assist: LIMONE E ASSIST CULO',
+    'assist: LIMONE E ASSIST TUO CULO',
+    'assist: LECCHI FIGA E ASSIST TUO CULO',
+  ];
+
+
+
+  onGenerateAction(){
+ this.ambienti.forEach(a => a.occupanti.forEach(el=> el.action = this.getRandomAction()))
+  }
+getRandomAction(): string {
+  const index = Math.floor(Math.random() * this.azioni.length);
+  return this.azioni[index];
+}
+helper: { name: string; dimensions: number } = {
+  name: '',
+  dimensions: 0
+};
+
+
+onGenerateHelper(){
+
+
+  const randomName = faker.person.firstName('male'); // solo nomi maschili
+const randomNumber = faker.number.int({ min: 12, max: 25 });
+
+this.helper = {
+  name: randomName,
+  dimensions: randomNumber
+};
+  
+}
 
 
 }
