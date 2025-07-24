@@ -3,4 +3,8 @@ export enum AmbienteTipo {
   Letto = 'letto',
   Camera = 'camera',
   Cucina = 'cucina',
+  Bagno = 'bagno',
+  Garage = 'garage',
+  Balcone = 'balcone',
+  Studio = 'studio'
 }

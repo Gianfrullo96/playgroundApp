@@ -1,0 +1,22 @@
+<div class="tile-map">
+  <div
+    class="character"
+    [style.left.px]="x * tileSize"
+    [style.top.px]="y * tileSize"
+  ></div>
+
+  <!-- Render persone -->
+  <div
+    *ngFor="let p of people"
+    class="person"
+    [style.left.px]="p.x * tileSize"
+    [style.top.px]="p.y * tileSize"
+    title="{{p.name}}"
+  ></div>
+</div>
+
+<div class="message" *ngIf="message">{{ message }}</div>
+
+
+
+<p>Usa WASD per muoverti. Premi E per interagire con chi è vicino.</p>

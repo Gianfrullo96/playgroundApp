@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Donna } from '../model/donna';
 import { Uomo } from '../model/uomo';
 import { AzioniSingole } from '../model/azioniSingole';
@@ -9,12 +9,15 @@ import { Router } from '@angular/router';
   templateUrl: './game-one.component.html',
   styleUrls: ['./game-one.component.css']
 })
-export class GameOneComponent {
+export class GameOneComponent implements OnInit {
 
 
   constructor(private router: Router) {
 
   }
+ngOnInit() {
+  this.checkProbabilitiesSum();
+}
 
   azione1 = 'limone';
   azione2 = 'sega';
@@ -54,6 +57,17 @@ export class GameOneComponent {
     azione: AzioniSingole;
     tempo: string;
   }[] = [];
+
+  
+finalResult: {
+  whoSborredOn: string;
+  whoSborredOnTurn: number;
+  whoSborredOnPosition :string;
+} = {
+  whoSborredOn: '',
+  whoSborredOnTurn: 0,
+  whoSborredOnPosition: ''
+};
 
   azioniGeneraliDiRiscaldamento: AzioniSingole[] = [
     new AzioniSingole(this.azione1, 15, 0.07463, 'assets/actions/limone.png'),
@@ -96,7 +110,6 @@ export class GameOneComponent {
   }
 
 
-
   generaPartecipanti() {
 
     console.log("🧪 Avvio Game 2");
@@ -112,7 +125,6 @@ export class GameOneComponent {
       { name: 'Bubby', image: 'assets/img/bubby.jpg', voto: 7 },
       { name: 'Caccia', image: 'assets/img/caccia.jpg', voto: 7.5 },
       { name: 'Camma', image: 'assets/img/camma.jpg', voto: 9 },
-      { name: 'Duo', image: 'assets/img/duo.jpg', voto: 9 },
       { name: 'Evangelion', image: 'assets/img/evangelion.jpg', voto: 9 },
       { name: 'Gdv', image: 'assets/img/gdv.jpg', voto: 8 },
       { name: 'Greca', image: 'assets/img/lagreca2.jpg', voto: 8 },
@@ -166,13 +178,24 @@ export class GameOneComponent {
       { name: 'Magnani', image: 'assets/img/magnani.jpg', voto: 0 },
       { name: 'Sofipale', image: 'assets/img/sofipale.jpg', voto: 0 },
       { name: 'Brusi', image: 'assets/img/brusi.jpg', voto: 0 },
-  { name: 'Fantini', image: 'assets/img/fantini.jpg', voto: 0 },
-  { name: 'Gine', image: 'assets/img/gine.jpg', voto: 0 },
-  { name: 'Marrico', image: 'assets/img/marrico.jpg', voto: 0 },
-  { name: 'Masotti', image: 'assets/img/masotti.jpg', voto: 0 },
-  { name: 'Rebbireb', image: 'assets/img/rebbireb.jpg', voto: 0 },
-  { name: 'RusalenGrande', image: 'assets/img/rusalenGrande.jpg', voto: 0 },
-  { name: 'RusalenPiccola', image: 'assets/img/rusalenPiccola.jpg', voto: 0 }
+      { name: 'Fantini', image: 'assets/img/fantini.jpg', voto: 0 },
+      { name: 'Gine', image: 'assets/img/gine.jpg', voto: 0 },
+      { name: 'Marrico', image: 'assets/img/marrico.jpg', voto: 0 },
+      { name: 'Masotti', image: 'assets/img/masotti.jpg', voto: 0 },
+      { name: 'Rebbireb', image: 'assets/img/rebbireb.jpg', voto: 0 },
+      { name: 'RusalenGrande', image: 'assets/img/rusalenGrande.jpg', voto: 0 },
+      { name: 'RusalenPiccola', image: 'assets/img/rusalenPiccola.jpg', voto: 0 },
+      { name: 'Burattoni', image: 'assets/img/burattoni.jpg', voto: 0 },
+      { name: 'Caterinone', image: 'assets/img/caterinone.jpg', voto: 0 },
+      { name: 'Dayanacambi', image: 'assets/img/dayanacambi.jpg', voto: 0 },
+      { name: 'Evangelista', image: 'assets/img/evangelista.jpg', voto: 0 },
+      { name: 'Giuliatamarra', image: 'assets/img/giuliatamarra.jpg', voto: 0 },
+      { name: 'orsi', image: 'assets/img/orsi.jpg', voto: 0 },
+      { name: 'Moretto', image: 'assets/img/moretto.jpg', voto: 0 },
+      { name: 'Pagnini', image: 'assets/img/pagnini.jpg', voto: 0 },
+      { name: 'Secrieru', image: 'assets/img/secrieru.jpg', voto: 0 },
+      { name: 'Vaglio', image: 'assets/img/vaglio.jpg', voto: 0 },
+      { name: 'Zanolli', image: 'assets/img/zanolli.jpg', voto: 0 },
 
     ];
 
@@ -213,10 +236,12 @@ export class GameOneComponent {
 
     this.gameInCorso = true;
   }
-  generateMaleChampion() {
-    this.manLife = this.totalTurns / 10 * this.manLife * 1.2;
-    this.men = new Uomo('Gianluca', this.manLife, 'assets/img/gianluca.jpg');
-  }
+ generateMaleChampion() {
+  const baseManLife = 550;
+  this.manLife = (this.totalTurns / 10) * baseManLife * 1.2;
+  this.men = new Uomo('Gianluca', this.manLife, 'assets/img/gianluca.jpg');
+}
+
 
 
 
@@ -235,6 +260,13 @@ export class GameOneComponent {
     return this.azioniGeneraliDiRiscaldamento[this.azioniGeneraliDiRiscaldamento.length - 1];
   }
 
+checkProbabilitiesSum() {
+  const totalProb = this.azioniGeneraliDiRiscaldamento
+    .map(a => a.probabilita)
+    .reduce((acc, val) => acc + val, 0);
+  console.log('Somma probabilità:', totalProb);
+  return totalProb;
+}
 
 
   nextTurnGame() {
@@ -278,6 +310,20 @@ export class GameOneComponent {
       }
     }, 4000);
   }
+  
+  newTemporizedDebug() {
+    if (this.gameOver || this.isTimedGameRunning) return;
+
+    this.isTimedGameRunning = true;
+
+    this.intervalId = setInterval(() => {
+      this.nextTurnGame();
+
+      if (this.gameOver) {
+        this.stopTimedGame();
+      }
+    }, 100);
+  }
 
   stopTimedGame() {
     if (this.intervalId) {
@@ -302,8 +348,16 @@ export class GameOneComponent {
     uomo.salute = (uomo.salute - danno);
     if (uomo.salute <= 0) {
       this.urDead = true;
+       if (!this.finalResult.whoSborredOn) {
+      this.finalResult.whoSborredOn = sfida.donna.nome;
+      this.finalResult.whoSborredOnTurn =this.currentTurn;
+      this.finalResult.whoSborredOnPosition = sfida.azione.azioniSingole;
+    }
     }
   }
+
+
+
 
 
   elaborateResult(): string {
@@ -354,6 +408,11 @@ export class GameOneComponent {
     this.currentTurn = 0;
     this.gameResultMessage = '';
     this.urDead = false;
+this.finalResult = {
+  whoSborredOn: '',
+  whoSborredOnTurn: 0,
+  whoSborredOnPosition: ''
+};
   }
 
 

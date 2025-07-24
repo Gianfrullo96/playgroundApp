@@ -15,13 +15,33 @@ export class GameTwoComponent implements OnInit {
 
   }
   ambienti: AmbienteGioco[] = [];
-  roomOrderOk:boolean= false;
-roomOrder: string[] = [];
+  roomOrderOk: boolean = false;
+  roomOrder: string[] = [];
 
   //nome- salute- voto- pic
   women: WomanGame2[] = [new WomanGame2('', '', 10)];
 
+  focusAmbiente(stanzaNome: string) {
+    const id = this.sanitizeId(stanzaNome);
 
+    // Rimuovi la classe highlight da tutti i div ambiente
+    this.ambienti.forEach(a => {
+      const elem = document.getElementById(this.sanitizeId(a.nome));
+      if (elem) elem.classList.remove('highlight');
+    });
+
+    // Aggiungi la classe highlight solo al div selezionato
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      elem.classList.add('highlight');
+    }
+  }
+
+
+  sanitizeId(name: string): string {
+    return 'ambiente-' + name.replace(/\s+/g, '-');
+  }
 
 
   ngOnInit(): void {
@@ -34,28 +54,23 @@ roomOrder: string[] = [];
 
   }
 
-  onPutCavalleIntoRoom() {
-    this.putCavalleIntoRoom();
-  }
-
-
-  onRemoveCavalleFromRoom() {
-    this.removeCavalleFromTheRoom()
-  }
-
-
-
   generateScenario() {
     this.ambienti = [
       new AmbienteGioco(AmbienteTipo.Sala, 'Sala', 4),
       new AmbienteGioco(AmbienteTipo.Letto, 'Camera da letto', 3),
       new AmbienteGioco(AmbienteTipo.Camera, 'Camera mia ', 1),
       new AmbienteGioco(AmbienteTipo.Cucina, 'Cucina', 2),
+      new AmbienteGioco(AmbienteTipo.Garage, 'Garage', 1),
+      new AmbienteGioco(AmbienteTipo.Bagno, 'Bagno Piccolo', 1),
+      new AmbienteGioco(AmbienteTipo.Bagno, 'bBgno grande', 2),
+      new AmbienteGioco(AmbienteTipo.Balcone, 'Balcone', 1),
+      new AmbienteGioco(AmbienteTipo.Studio, 'Studio', 1),
+      new AmbienteGioco(AmbienteTipo.Studio, 'Stanzino a lavoro', 1),
+
     ];
 
     console.log('Ambienti inizializzati:', this.ambienti);
   }
-
 
   generateCavalle() {
     const defaultWomenData = [
@@ -67,7 +82,6 @@ roomOrder: string[] = [];
       { name: 'Bubby', image: 'assets/img/bubby.jpg', voto: 68 },
       { name: 'Caccia', image: 'assets/img/caccia.jpg', voto: 75 },
       { name: 'Camma', image: 'assets/img/camma.jpg', voto: 90 },
-      { name: 'Duo', image: 'assets/img/duo.jpg', voto: 90 },
       { name: 'Evangelion', image: 'assets/img/evangelion.jpg', voto: 88 },
       { name: 'Gdv', image: 'assets/img/gdv.jpg', voto: 75 },
       { name: 'Greca', image: 'assets/img/lagreca2.jpg', voto: 80 },
@@ -115,13 +129,25 @@ roomOrder: string[] = [];
       { name: 'Magnani', image: 'assets/img/magnani.jpg', voto: 75 },
       { name: 'Sofipale', image: 'assets/img/sofipale.jpg', voto: 85 },
       { name: 'Brusi', image: 'assets/img/brusi.jpg', voto: 0 },
-  { name: 'Fantini', image: 'assets/img/fantini.jpg', voto: 0 },
-  { name: 'Gine', image: 'assets/img/gine.jpg', voto: 0 },
-  { name: 'Marrico', image: 'assets/img/marrico.jpg', voto: 0 },
-  { name: 'Masotti', image: 'assets/img/masotti.jpg', voto: 0 },
-  { name: 'Rebbireb', image: 'assets/img/rebbireb.jpg', voto: 0 },
-  { name: 'RusalenGrande', image: 'assets/img/rusalenGrande.jpg', voto: 0 },
-  { name: 'RusalenPiccola', image: 'assets/img/rusalenPiccola.jpg', voto: 0 }
+      { name: 'Fantini', image: 'assets/img/fantini.jpg', voto: 0 },
+      { name: 'Gine', image: 'assets/img/gine.jpg', voto: 0 },
+      { name: 'Marrico', image: 'assets/img/marrico.jpg', voto: 0 },
+      { name: 'Masotti', image: 'assets/img/masotti.jpg', voto: 0 },
+      { name: 'Rebbireb', image: 'assets/img/rebbireb.jpg', voto: 0 },
+      { name: 'RusalenGrande', image: 'assets/img/rusalenGrande.jpg', voto: 0 },
+      { name: 'RusalenPiccola', image: 'assets/img/rusalenPiccola.jpg', voto: 0 },
+      { name: 'Burattoni', image: 'assets/img/burattoni.jpg', voto: 0 },
+      { name: 'Caterinone', image: 'assets/img/caterinone.jpg', voto: 0 },
+      { name: 'Dayanacambi', image: 'assets/img/dayanacambi.jpg', voto: 0 },
+      { name: 'Evangelista', image: 'assets/img/evangelista.jpg', voto: 0 },
+      { name: 'Giuliatamarra', image: 'assets/img/giuliatamarra.jpg', voto: 0 },
+      { name: 'orsi', image: 'assets/img/orsi.jpg', voto: 0 },
+      { name: 'Moretto', image: 'assets/img/moretto.jpg', voto: 0 },
+      { name: 'Pagnini', image: 'assets/img/pagnini.jpg', voto: 0 },
+      { name: 'Secrieru', image: 'assets/img/secrieru.jpg', voto: 0 },
+      { name: 'Vaglio', image: 'assets/img/vaglio.jpg', voto: 0 },
+      { name: 'Zanolli', image: 'assets/img/zanolli.jpg', voto: 0 },
+
     ];
 
 
@@ -131,8 +157,6 @@ roomOrder: string[] = [];
     );
 
   }
-
-
 
   putCavalleIntoRoom() {
     // Reset occupanti in ogni ambiente
@@ -162,15 +186,11 @@ roomOrder: string[] = [];
       console.log(`Ambiente: ${ambiente.nome} (${ambiente.tipo}) - Occupanti: ${ambiente.occupanti.join(', ')}`);
     });
   }
-
-
   removeCavalleFromTheRoom() {
     this.ambienti.forEach(a => a.occupanti = []);
-    this.roomOrder=[];
-    this.roomOrderOk=false;
+    this.roomOrder = [];
+    this.roomOrderOk = false;
   }
-
-
 
   showCavalleContainer: boolean = false;
   onShowCavalleContainer() {
@@ -180,25 +200,42 @@ roomOrder: string[] = [];
   onGoToHome() {
     this.router.navigate(["/"]);
   }
+  onChooseRoomOrder() {
+    if (this.ambienti && Array.isArray(this.ambienti)) {
+      const shuffled = [...this.ambienti];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
 
-
-
-onChooseRoomOrder() {
-  if (this.ambienti && Array.isArray(this.ambienti)) {
-    const shuffled = [...this.ambienti];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      this.roomOrder = shuffled.map((el, index) => `${index + 1}. ${el.nome}`);
+      this.roomOrderOk = true;
+    } else {
+      this.roomOrder = [];
+      this.roomOrderOk = false;
     }
-
-    this.roomOrder = shuffled.map((el, index) => `${index + 1}. ${el.nome}`);
-    this.roomOrderOk = true;
-  } else {
-    this.roomOrder = [];
-    this.roomOrderOk = false;
   }
-}
 
+
+  onPutCavalleIntoRoom() {
+    this.putCavalleIntoRoom();
+  }
+
+
+  onRemoveCavalleFromRoom() {
+    this.removeCavalleFromTheRoom()
+  }
+
+
+  zoomedImageUrl: string | null = null;
+
+  onZoomImage(url: string) {
+    this.zoomedImageUrl = url;
+  }
+
+  closeZoom() {
+    this.zoomedImageUrl = null;
+  }
 
 
 

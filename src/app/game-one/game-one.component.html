@@ -2,28 +2,31 @@
   <div class="container">
     <h1 class="game-title">💘 Harem Challenge Arena 💘</h1>
 
-    <div class="button-container" style="margin-bottom:8px">
-      <button type="button" class="game-turn-btn" (click)="generaPartecipanti()">🧪 Genera Partecipanti</button>
-      <button type="button" class="game-turn-btn" (click)="generaPartecipanti_gymEdition()">🧪 Genera Partecipanti GymEdition</button>
-      <button type="button" class="game-turn-btn" (click)="onGoToHome()">Home</button>
-
+    <div class="button-container top-buttons">
+      <button type="button" class="game-turn-btn" (click)="generaPartecipanti()">🕹️ <span class="btn-label"> Genera
+          Partecipanti </span> </button>
+      <button type="button" class="game-turn-btn" (click)="generaPartecipanti_gymEdition()"> 🦾<span class="btn-label">
+          Gym Edition</span></button>
+      <button type="button" class="game-turn-btn" (click)="onGoToHome()">🏠 <span class="btn-label"> Home</span>
+      </button>
+      <div  *ngIf="gameInCorso">  <button  type="button" class="game-turn-btn" (click)="newTemporizedDebug()">⚔️ <span class="btn-label">
+          Debugger</span> </button></div>
+    
     </div>
-
 
     <div class="game-container" *ngIf="gameInCorso">
       <div *ngFor="let match of currentChallenge" class="match-row">
-        <div class="match-stats">
+        <div class="match-info">
           <div class="match-text">
-            <h1>TURN NUMBER {{currentTurn}}</h1>
+            <h2>Turn {{ currentTurn }}</h2>
             <p><strong>👨‍🦰 {{ match.uomo.nome }}</strong> vs <strong>{{ match.donna.nome }}</strong></p>
             <p><strong>Azione:</strong> <em>{{ match.azione.azioniSingole }}</em></p>
             <p><strong>Salute:</strong> <em>{{ match.uomo.salute }}</em></p>
             <p>🕒 {{ match.tempo }}</p>
-
-
           </div>
+
           <div *ngIf="match.azione.immagine" class="azione-img-container">
-            <img [src]="match.azione.immagine" alt="Immagine Azione" class="azione-img" />
+            <img [src]="match.azione.immagine" alt="Azione" class="azione-img" />
           </div>
         </div>
 
@@ -32,25 +35,20 @@
         </div>
       </div>
 
-
-
-
-      <!-- 👇 ancora invisibile in fondo -->
       <div #scrollAnchor></div>
-      <div class="button-container">
-        <button type="button" (click)="nextTurnGame()" [disabled]="gameOver" class="game-action-btn">
-          🎮 Prossimo Turno
+
+      <div class="button-container bottom-buttons">
+        <button type="button" (click)="nextTurnGame()" [disabled]="gameOver" class="game-action-btn action-next">
+          🎮 <span class="btn-label">Prossimo Turno</span>
         </button>
-        <button type="button" (click)="resetAll()" class="game-action-btn">
-          🔄 Resetta Gioco
+        <button type="button" (click)="resetAll()" class="game-action-btn action-reset">
+          🔄 <span class="btn-label">Resetta Gioco</span>
         </button>
         <button type="button" (click)="newTemporizedGame()" [disabled]="gameOver || isTimedGameRunning"
-          class="game-action-btn">
-          🎮 TemporizedGame
+          class="game-action-btn action-timed">
+          ⏱️ <span class="btn-label">Temporized Game</span>
         </button>
-
       </div>
-
 
 
       <span *ngIf="urDead" class="death-message">💀 hai sborrato!</span>
@@ -58,10 +56,10 @@
       <div *ngIf="gameOver" class="result">
         <pre>{{ gameResultMessage }}</pre>
         <p><strong>👨‍🦰 Vita Rimasta:</strong> {{ men.salute }}</p>
+        <p> <strong>Sborrato su</strong> {{finalResult.whoSborredOn }} </p>
+        <p> <strong>Sborrato su</strong> {{finalResult.whoSborredOnTurn }} </p>
+          <p> <strong>Sborrato su</strong> {{finalResult.whoSborredOnPosition }} </p>
       </div>
-
-
     </div>
   </div>
-
 </div>
