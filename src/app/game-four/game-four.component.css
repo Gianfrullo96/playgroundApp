@@ -1,0 +1,123 @@
+/* Container centrale e pulito */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  min-height: 100vh;
+  color: #eee;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Box immagine con bordo luminoso */
+.image-box.glow-border {
+  position: relative;
+  width: 480px;
+  max-width: 90vw;
+  margin-bottom: 30px;
+  border-radius: 25px;
+  padding: 10px;
+  background: #111124;
+  box-shadow:
+    0 0 20px #7f60ff,
+    inset 0 0 40px #9b78ff;
+  transition: box-shadow 0.5s ease;
+}
+
+/* Glow e ombra al passaggio */
+.image-box.glow-border:hover {
+  box-shadow:
+    0 0 30px #a678ff,
+    inset 0 0 60px #b995ff,
+    0 0 25px #d2aaff;
+}
+
+/* Immagine grande, proporzioni rispettate, filtro glow */
+.glow-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  filter:
+    drop-shadow(0 0 12px #a678ff)
+    drop-shadow(0 0 18px #b995ff);
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+/* Più glow all'hover dell'immagine */
+.glow-image:hover {
+  filter:
+    drop-shadow(0 0 20px #dcaaff)
+    drop-shadow(0 0 28px #f5ccff);
+  transform: scale(1.03);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Nome con effetto neon futuristico */
+.name.neon-text {
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 15px;
+  color: #d49fff;
+  text-shadow:
+    0 0 5px #d49fff,
+    0 0 15px #d49fff,
+    0 0 25px #b57aff,
+    0 0 40px #a567ff;
+  user-select: none;
+  letter-spacing: 0.1em;
+}
+
+/* Container pulsanti */
+.navigation-buttons,
+.mode-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+/* Pulsanti neon futuristici */
+.neon-button {
+  background: transparent;
+  border: 2px solid #c087ff;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  color: #e0b3ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 0 10px #c087ff,
+    inset 0 0 8px #c087ff;
+  user-select: none;
+}
+
+.neon-button:hover {
+  background: #b080ff;
+  color: #fff;
+  box-shadow:
+    0 0 18px #da9fff,
+    inset 0 0 12px #da9fff;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .image-box.glow-border {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .name.neon-text {
+    font-size: 1.8rem;
+  }
+
+  .neon-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
+    

@@ -1,0 +1,24 @@
+<div class="game-container">
+  <!-- Visualizzazione automatica -->
+  <div *ngIf="mode === 'auto' && shuffledWomen[currentIndex]" class="image-box glow-border">
+    <img [src]="shuffledWomen[currentIndex].profPic" [alt]="shuffledWomen[currentIndex].name" class="glow-image" />
+    <div class="name neon-text">{{ shuffledWomen[currentIndex].name }}</div>
+  </div>
+
+  <!-- Visualizzazione manuale -->
+  <div *ngIf="mode === 'manual' && shuffledWomen[currentIndex]" class="image-box glow-border">
+    <img [src]="shuffledWomen[currentIndex].profPic" [alt]="shuffledWomen[currentIndex].name" class="glow-image" />
+    <div class="name neon-text">{{ shuffledWomen[currentIndex].name }}</div>
+
+    <div class="navigation-buttons">
+      <button (click)="previous()" class="neon-button">Indietro</button>
+      <button (click)="next()" class="neon-button">Avanti</button>
+    </div>
+  </div>
+
+  <!-- Scelta modalità -->
+  <div class="mode-buttons">
+    <button (click)="startAuto()" class="neon-button">Avvio automatico</button>
+    <button (click)="startManual()" class="neon-button">Avvio manuale</button>
+  </div>
+</div>

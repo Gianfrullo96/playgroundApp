@@ -4,6 +4,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { GameOneComponent } from './game-one/game-one.component';
 import { GameTwoComponent } from './game-two/game-two.component';
 import { GameThreeComponent } from './game-three/game-three.component';
+import { GameFourComponent } from './game-four/game-four.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,8 @@ const routes: Routes = [
   { path: 'game1', component: GameOneComponent },
   { path: 'game2', component: GameTwoComponent },
   { path: 'game3', component: GameThreeComponent },
+    { path: 'game4', component: GameFourComponent },
+
 
 
   // aggiungi altre rotte qui
