@@ -3,6 +3,7 @@ import { Donna } from '../model/donna';
 import { Uomo } from '../model/uomo';
 import { AzioniSingole } from '../model/azioniSingole';
 import { Router } from '@angular/router';
+import { ARRAY_CAVALLE } from '../model/arrayCavalle';
 
 @Component({
   selector: 'app-game-one',
@@ -15,9 +16,9 @@ export class GameOneComponent implements OnInit {
   constructor(private router: Router) {
 
   }
-ngOnInit() {
-  this.checkProbabilitiesSum();
-}
+  ngOnInit() {
+    this.checkProbabilitiesSum();
+  }
 
   azione1 = 'limone';
   azione2 = 'sega';
@@ -58,16 +59,16 @@ ngOnInit() {
     tempo: string;
   }[] = [];
 
-  
-finalResult: {
-  whoSborredOn: string;
-  whoSborredOnTurn: number;
-  whoSborredOnPosition :string;
-} = {
-  whoSborredOn: '',
-  whoSborredOnTurn: 0,
-  whoSborredOnPosition: ''
-};
+
+  finalResult: {
+    whoSborredOn: string;
+    whoSborredOnTurn: number;
+    whoSborredOnPosition: string;
+  } = {
+      whoSborredOn: '',
+      whoSborredOnTurn: 0,
+      whoSborredOnPosition: ''
+    };
 
   azioniGeneraliDiRiscaldamento: AzioniSingole[] = [
     new AzioniSingole(this.azione1, 15, 0.07463, 'assets/actions/limone.png'),
@@ -114,94 +115,8 @@ finalResult: {
 
     console.log("🧪 Avvio Game 2");
     this.generateMaleChampion();
-
-
-    const defaultWomenData = [
-      { name: 'Ilaria', image: 'assets/img/ilaria.jpg', voto: 9 },
-      { name: 'Giomi', image: 'assets/img/giomi.jpg', voto: 8 },
-      { name: 'Galletti', image: 'assets/img/galletti.jpg', voto: 8 },
-      { name: 'Asia', image: 'assets/img/asia.jpg', voto: 9 },
-      { name: 'Amato', image: 'assets/img/amato.jpg', voto: 7 },
-      { name: 'Bubby', image: 'assets/img/bubby.jpg', voto: 7 },
-      { name: 'Caccia', image: 'assets/img/caccia.jpg', voto: 7.5 },
-      { name: 'Camma', image: 'assets/img/camma.jpg', voto: 9 },
-      { name: 'Evangelion', image: 'assets/img/evangelion.jpg', voto: 9 },
-      { name: 'Gdv', image: 'assets/img/gdv.jpg', voto: 8 },
-      { name: 'Greca', image: 'assets/img/lagreca2.jpg', voto: 8 },
-      { name: 'Gretarossi', image: 'assets/img/gretarossi.jpg', voto: 9 },
-      { name: 'Guerrini', image: 'assets/img/guerrini.jpg', voto: 8 },
-      { name: 'Klea', image: 'assets/img/klea.jpg', voto: 9.5 },
-      { name: 'Mani', image: 'assets/img/mani.jpg', voto: 8.5 },
-      { name: 'Marialaura', image: 'assets/img/marialaura.jpg', voto: 8 },
-      { name: 'Minguzzi', image: 'assets/img/minguzzi.jpg', voto: 8 },
-      { name: 'Minzi', image: 'assets/img/minzi.jpg', voto: 8.5 },
-      { name: 'Miriam', image: 'assets/img/miriam.jpg', voto: 9 },
-      { name: 'Molduc', image: 'assets/img/molduc.jpg', voto: 8.5 },
-      { name: 'Mommy', image: 'assets/img/mommy.jpg', voto: 7 },
-      { name: 'Podda', image: 'assets/img/podda.jpg', voto: 7 },
-      { name: 'Sofi', image: 'assets/img/sofi.jpg', voto: 8 },
-      { name: 'Spinella', image: 'assets/img/spinella.jpg', voto: 9 },
-      { name: 'Trioschi', image: 'assets/img/trioschi.jpg', voto: 8 },
-      { name: 'Vasi', image: 'assets/img/vasi.jpg', voto: 6 },
-      { name: 'Verdi', image: 'assets/img/verdi.jpg', voto: 8.5 },
-      { name: 'Bagnoli', image: 'assets/img/bagnoli.jpg', voto: 8 },
-      { name: 'Cico', image: 'assets/img/cico.jpg', voto: 10 },
-      { name: 'Dalpozzo', image: 'assets/img/dalpozzo.jpg', voto: 9 },
-      { name: 'Danielina', image: 'assets/img/danielina.jpg', voto: 8 },
-      { name: 'Devellis', image: 'assets/img/devellis.jpg', voto: 7.5 },
-      { name: 'Echi', image: 'assets/img/echi.jpg', voto: 8 },
-      { name: 'Gemma', image: 'assets/img/gemma.jpg', voto: 7.5 },
-      { name: 'BambinePale', image: 'assets/img/bambinepale.jpg', voto: 8 },
-      { name: 'Bucci', image: 'assets/img/bucci.jpg', voto: 8 },
-      { name: 'Cavalli', image: 'assets/img/cavalli.jpg', voto: 8 },
-      { name: 'Garroni', image: 'assets/img/garroni.jpg', voto: 6 },
-      { name: 'Levriero', image: 'assets/img/levriero.jpg', voto: 6 },
-      { name: 'SaraPale', image: 'assets/img/sarapale.jpg', voto: 6 },
-      { name: 'Savva', image: 'assets/img/savva.jpg', voto: 8 },
-      { name: 'Simo', image: 'assets/img/simo2.jpg', voto: 7 },
-      { name: 'Zaffi', image: 'assets/img/zaffi.jpg', voto: 8.5 },
-      { name: 'Zefi', image: 'assets/img/zefi.jpg', voto: 7.5 },
-      { name: 'SofiRossi', image: 'assets/img/sofirossi.jpg', voto: 9 },
-      { name: 'Argnani2', image: 'assets/img/argnani2.jpg', voto: 0 },
-      { name: 'Danesi', image: 'assets/img/danesi.jpg', voto: 0 },
-      { name: 'Gallamini', image: 'assets/img/gallamini.jpg', voto: 0 },
-      { name: 'GiuliaPale', image: 'assets/img/giuliapale.jpg', voto: 0 },
-      { name: 'Hillary', image: 'assets/img/hillary.jpg', voto: 0 },
-      { name: 'Minzi2', image: 'assets/img/minzi2.jpg', voto: 0 },
-      { name: 'Party', image: 'assets/img/party.jpg', voto: 0 },
-      { name: 'Savorelli', image: 'assets/img/savorelli.jpg', voto: 0 },
-      { name: 'Syria', image: 'assets/img/syria.jpg', voto: 0 },
-      { name: 'Verdi2', image: 'assets/img/verdi2.jpg', voto: 0 },
-      { name: 'Baravelli', image: 'assets/img/baravelli.jpg', voto: 0 },
-      { name: 'Garavini', image: 'assets/img/garavini.jpg', voto: 0 },
-      { name: 'Luciacosta', image: 'assets/img/luciacosta.jpg', voto: 0 },
-      { name: 'Magnani', image: 'assets/img/magnani.jpg', voto: 0 },
-      { name: 'Sofipale', image: 'assets/img/sofipale.jpg', voto: 0 },
-      { name: 'Brusi', image: 'assets/img/brusi.jpg', voto: 0 },
-      { name: 'Fantini', image: 'assets/img/fantini.jpg', voto: 0 },
-      { name: 'Gine', image: 'assets/img/gine.jpg', voto: 0 },
-      { name: 'Marrico', image: 'assets/img/marrico.jpg', voto: 0 },
-      { name: 'Masotti', image: 'assets/img/masotti.jpg', voto: 0 },
-      { name: 'Rebbireb', image: 'assets/img/rebbireb.jpg', voto: 0 },
-      { name: 'RusalenGrande', image: 'assets/img/rusalenGrande.jpg', voto: 0 },
-      { name: 'RusalenPiccola', image: 'assets/img/rusalenPiccola.jpg', voto: 0 },
-      { name: 'Burattoni', image: 'assets/img/burattoni.jpg', voto: 0 },
-      { name: 'Caterinone', image: 'assets/img/caterinone.jpg', voto: 0 },
-      { name: 'Dayanacambi', image: 'assets/img/dayanacambi.jpg', voto: 0 },
-      { name: 'Evangelista', image: 'assets/img/evangelista.jpg', voto: 0 },
-      { name: 'Giuliatamarra', image: 'assets/img/giuliatamarra.jpg', voto: 0 },
-      { name: 'orsi', image: 'assets/img/orsi.jpg', voto: 0 },
-      { name: 'Moretto', image: 'assets/img/moretto.jpg', voto: 0 },
-      { name: 'Pagnini', image: 'assets/img/pagnini.jpg', voto: 0 },
-      { name: 'Secrieru', image: 'assets/img/secrieru.jpg', voto: 0 },
-      { name: 'Vaglio', image: 'assets/img/vaglio.jpg', voto: 0 },
-      { name: 'Zanolli', image: 'assets/img/zanolli.jpg', voto: 0 },
-
-    ];
-
-
     // Mappa ogni oggetto donna nel formato Donna richiesto
-    this.women2 = defaultWomenData.map(
+    this.women2 = ARRAY_CAVALLE.map(
       donna => new Donna(donna.name, 100, donna.voto ?? 0, donna.image)
     );
 
@@ -236,11 +151,11 @@ finalResult: {
 
     this.gameInCorso = true;
   }
- generateMaleChampion() {
-  const baseManLife = 550;
-  this.manLife = (this.totalTurns / 10) * baseManLife * 1.2;
-  this.men = new Uomo('Gianluca', this.manLife, 'assets/img/gianluca.jpg');
-}
+  generateMaleChampion() {
+    const baseManLife = 550;
+    this.manLife = (this.totalTurns / 10) * baseManLife * 1.2;
+    this.men = new Uomo('Gianluca', this.manLife, 'assets/img/gianluca.jpg');
+  }
 
 
 
@@ -260,13 +175,13 @@ finalResult: {
     return this.azioniGeneraliDiRiscaldamento[this.azioniGeneraliDiRiscaldamento.length - 1];
   }
 
-checkProbabilitiesSum() {
-  const totalProb = this.azioniGeneraliDiRiscaldamento
-    .map(a => a.probabilita)
-    .reduce((acc, val) => acc + val, 0);
-  console.log('Somma probabilità:', totalProb);
-  return totalProb;
-}
+  checkProbabilitiesSum() {
+    const totalProb = this.azioniGeneraliDiRiscaldamento
+      .map(a => a.probabilita)
+      .reduce((acc, val) => acc + val, 0);
+    console.log('Somma probabilità:', totalProb);
+    return totalProb;
+  }
 
 
   nextTurnGame() {
@@ -310,7 +225,7 @@ checkProbabilitiesSum() {
       }
     }, 4000);
   }
-  
+
   newTemporizedDebug() {
     if (this.gameOver || this.isTimedGameRunning) return;
 
@@ -348,11 +263,11 @@ checkProbabilitiesSum() {
     uomo.salute = (uomo.salute - danno);
     if (uomo.salute <= 0) {
       this.urDead = true;
-       if (!this.finalResult.whoSborredOn) {
-      this.finalResult.whoSborredOn = sfida.donna.nome;
-      this.finalResult.whoSborredOnTurn =this.currentTurn;
-      this.finalResult.whoSborredOnPosition = sfida.azione.azioniSingole;
-    }
+      if (!this.finalResult.whoSborredOn) {
+        this.finalResult.whoSborredOn = sfida.donna.nome;
+        this.finalResult.whoSborredOnTurn = this.currentTurn;
+        this.finalResult.whoSborredOnPosition = sfida.azione.azioniSingole;
+      }
     }
   }
 
@@ -408,11 +323,11 @@ checkProbabilitiesSum() {
     this.currentTurn = 0;
     this.gameResultMessage = '';
     this.urDead = false;
-this.finalResult = {
-  whoSborredOn: '',
-  whoSborredOnTurn: 0,
-  whoSborredOnPosition: ''
-};
+    this.finalResult = {
+      whoSborredOn: '',
+      whoSborredOnTurn: 0,
+      whoSborredOnPosition: ''
+    };
   }
 
 
