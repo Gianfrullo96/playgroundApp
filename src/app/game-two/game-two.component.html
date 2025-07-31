@@ -20,13 +20,14 @@
       (click)="focusAmbiente(stanza.split('. ')[1])">
       {{ i + 1 }}
     </button>
+    
 
     <button class="sidebar-btn-menu" (click)="onGoToHome()" aria-label="Torna a Home">🏠</button>
   </aside>
 
   <!-- Contenuto principale -->
   <main class="main-content">
-    <div class="ambienti-container">
+    <div class="ambienti-container" style="margin-top:20px">
       <div *ngFor="let ambiente of ambienti" class="ambiente-card" [attr.id]="sanitizeId(ambiente.nome)">
         <h3>{{ ambiente.nome }} <span class="tipo">({{ ambiente.tipo }})</span></h3>
         <p>👥 Max occupanti: <strong>{{ ambiente.maxOccupanti }}</strong></p>

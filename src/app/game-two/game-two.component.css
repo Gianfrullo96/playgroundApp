@@ -70,14 +70,19 @@
 
 /* ===== SIDEBAR ===== */
 .sidebar {
-  display: none;
+  display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #141428, #59597d);
   padding: 14px 10px;
   gap: 14px;
   border-right: 2px solid #ff4ecf;
   box-shadow: 2px 0 15px rgba(255, 78, 207, 0.25);
+
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
+
 
 .sidebar-btn {
   background: linear-gradient(145deg, #2f76b5, #9c27b0);
@@ -91,10 +96,18 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(255, 78, 207, 0.3);
+  flex-shrink: 0; /* importante */
 }
 
+.sidebar-btn {
+  flex-shrink: 0; /* previene il ridimensionamento */
+  width: 48px;
+  height: 48px;
+}
+
+
 .sidebar-btn-menu{
-    background: linear-gradient(145deg, #ff4ecf, #9c27b0);
+  background: linear-gradient(145deg, #ff4ecf, #9c27b0);
   color: #fff;
   border: 2px solid #ff80bf;
   border-radius: 50%;
@@ -105,6 +118,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(255, 78, 207, 0.3);
+    flex-shrink: 0; /* importante */
 }
 
 .sidebar-btn:hover {
@@ -126,7 +140,7 @@
 /* ===== MAIN CONTENT ===== */
 .main-content {
   flex: 1;
-  padding: 1rem;
+  padding-left: 1rem;
 }
 
 /* ===== AMBIENTI CONTAINER ===== */
@@ -134,8 +148,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem;
-  justify-content: center;
-  margin-bottom: 2.5rem;
+  justify-content: center;  
 }
 
 .ambiente-card {
@@ -143,7 +156,7 @@
   border: 1px solid #ff4ecf;
   border-radius: 14px;
   padding: 6px;
-  min-width: 200px;
+  min-width: 280px;
   box-shadow: 0 4px 12px rgba(255, 78, 207, 0.25);
   transition: all 0.3s ease;
 }
@@ -359,7 +372,7 @@
     left: 0;
     top: 0; 
     height: calc(100%);
-    width: 50px;
+    width: 65px;
     background: #111122;
     z-index: 99;
   }
