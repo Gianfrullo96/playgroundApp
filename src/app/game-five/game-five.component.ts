@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ARRAY_CAVALLE } from '../model/arrayCavalle';
+import { ARRAY_CAVALLE, ARRAY_CAVALLE_CON_STATS } from '../model/arrayCavalle';
 
-// Categorie delle sfide
-export const CATEGORIE = ['fisico', 'strategia', 'sopravvivenza', 'esibizione', 'improvvisazione'] as const;
-export type Categoria = typeof CATEGORIE[number];
+
+
 
 export interface CavallaBase {
   name: string;
   image: string;
   voto: number;
 }
+
+// Categorie delle sfide
+export const CATEGORIE = ['fisico', 'strategia', 'sopravvivenza', 'esibizione', 'intelligenza'] as const;
+export type Categoria = typeof CATEGORIE[number];
 
 export interface Cavalla extends CavallaBase {
   stats: {
@@ -46,10 +49,26 @@ export class GameFiveComponent implements OnInit {
     this.roundCorrente = 1;
     this.vincitore = null;
     this.logSfide = [];
-    this.cavalleConStats = this.generaStatsPerCavalle([...ARRAY_CAVALLE]);
+    //this.cavalleConStats = this.generaStatsPerCavalle([...ARRAY_CAVALLE]);
+    this.cavalleConStats = this.mapFromArrayCavalle([...ARRAY_CAVALLE_CON_STATS]);
     this.squadre = this.creaSquadre(this.cavalleConStats);
     this.categoriaCorrente = null;
   }
+
+mapFromArrayCavalle(cavalle: (CavallaBase & Record<string, any>)[]): Cavalla[] {
+  return cavalle.map(c => ({
+    ...c,
+    stats: {
+      fisico: c['fisico'],
+      strategia: c['strategia'],
+      sopravvivenza: c['sopravvivenza'],
+      esibizione: c['esibizione'],
+      intelligenza: c['intelligenza'],
+    }
+  }));
+}
+
+
 
   generaStatsPerCavalle(cavalle: CavallaBase[]): Cavalla[] {
     return cavalle.map(c => ({
