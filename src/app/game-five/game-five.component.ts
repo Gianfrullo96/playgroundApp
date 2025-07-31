@@ -5,19 +5,22 @@ import { ARRAY_CAVALLE } from '../model/arrayCavalle';
 export const CATEGORIE = ['fisico', 'strategia', 'sopravvivenza', 'esibizione', 'improvvisazione'] as const;
 export type Categoria = typeof CATEGORIE[number];
 
-// Tipo base: quello usato nell'array originale (senza le stats)
 export interface CavallaBase {
   name: string;
   image: string;
   voto: number;
 }
 
-// Tipo completo usato nel gioco
 export interface Cavalla extends CavallaBase {
   stats: {
     [K in Categoria]: number;
   };
 }
+interface GruppoConPunteggio {
+  squadra: Cavalla[];
+  punteggio: number;
+}
+
 
 @Component({
   selector: 'app-game-five',
@@ -26,9 +29,9 @@ export interface Cavalla extends CavallaBase {
 })
 export class GameFiveComponent implements OnInit {
 
-  cavalleConStats: Cavalla[] = [];       // Lista cavalle con stats generate
-  squadre: Cavalla[][] = [];              // Gruppi da 4
-  roundCorrente: number = 1;
+  cavalleConStats: Cavalla[] = [];
+  squadre: Cavalla[][] = [];
+  roundCorrente = 1;
   categoriaCorrente: Categoria | null = null;
   vincitore: Cavalla[] | null = null;
   logSfide: string[] = [];
@@ -39,8 +42,6 @@ export class GameFiveComponent implements OnInit {
     this.reset();
   }
 
-
-  // Resetta il torneo da capo
   reset(): void {
     this.roundCorrente = 1;
     this.vincitore = null;
@@ -50,7 +51,6 @@ export class GameFiveComponent implements OnInit {
     this.categoriaCorrente = null;
   }
 
-  // Mappa ogni cavalla base con delle statistiche generate casualmente
   generaStatsPerCavalle(cavalle: CavallaBase[]): Cavalla[] {
     return cavalle.map(c => ({
       ...c,
@@ -58,16 +58,14 @@ export class GameFiveComponent implements OnInit {
     }));
   }
 
-  // Genera valori da 0 a 10 per ciascuna categoria
   generaStatsCasuali(): Record<Categoria, number> {
     const stats: Partial<Record<Categoria, number>> = {};
     this.categorie.forEach(cat => {
-      stats[cat] = Math.floor(Math.random() * 11); // Valori da 0 a 10
+      stats[cat] = Math.floor(Math.random() * 11);
     });
     return stats as Record<Categoria, number>;
   }
 
-  // Divide in gruppi da 4 casualmente
   creaSquadre(cavalle: Cavalla[]): Cavalla[][] {
     const copie = [...cavalle];
     const squadre: Cavalla[][] = [];
@@ -84,41 +82,47 @@ export class GameFiveComponent implements OnInit {
     return squadre;
   }
 
-  // Estrae casualmente una categoria di sfida
   estraiCategoria(): Categoria {
     return this.categorie[Math.floor(Math.random() * this.categorie.length)];
   }
 
-  // Simula un round singolo di sfide tra squadre
   eseguiSfide(): void {
-    this.logSfide = [];
-    this.vincitore = null;
+  this.logSfide = [];
+  this.vincitore = null;
+  this.categoriaCorrente = this.estraiCategoria();
+  this.logSfide.push(`🎯 Categoria del round ${this.roundCorrente}: ${this.categoriaCorrente.toUpperCase()}`);
 
-    this.categoriaCorrente = this.estraiCategoria();
-    this.logSfide.push(`Categoria del round: ${this.categoriaCorrente.toUpperCase()}`);
+  const gruppiConPunteggio: GruppoConPunteggio[] = this.squadre.map((squadra, index) => {
+    const punteggio = squadra.reduce((tot, cav) => tot + cav.stats[this.categoriaCorrente!], 0);
+    this.logSfide.push(`🔹 Squadra ${index + 1} ha totalizzato ${punteggio} punti`);
+    return { squadra, punteggio };
+  });
 
-    const punteggiSquadre = this.squadre.map(sq =>
-      sq.reduce((acc, cav) => acc + cav.stats[this.categoriaCorrente!], 0)
-    );
+  const nuoveSquadre: Cavalla[][] = [];
 
-    const maxPunteggio = Math.max(...punteggiSquadre);
-    const vincitriciIndici = punteggiSquadre
-      .map((p, idx) => (p === maxPunteggio ? idx : -1))
-      .filter(idx => idx !== -1);
+  for (let i = 0; i < gruppiConPunteggio.length; i += 4) {
+    const gruppoDiGruppi = gruppiConPunteggio.slice(i, i + 4);
 
-    if (vincitriciIndici.length > 1) {
-      this.logSfide.push(`Pareggio tra squadre! Nessun vincitore per questo round.`);
-      this.vincitore = null;
+    const max = Math.max(...gruppoDiGruppi.map(g => g.punteggio));
+    const vincitrici = gruppoDiGruppi.filter(g => g.punteggio === max);
+
+    if (vincitrici.length === 1) {
+      nuoveSquadre.push(vincitrici[0].squadra);
+      const indiceVincente = this.squadre.indexOf(vincitrici[0].squadra);
+      this.logSfide.push(`🏆 Gruppo ${i / 4 + 1}: Vince la squadra ${indiceVincente + 1} con ${max} punti`);
     } else {
-      const indiceVincente = vincitriciIndici[0];
-      this.logSfide.push(`Vince la squadra ${indiceVincente + 1} con ${maxPunteggio} punti.`);
-      this.vincitore = this.squadre[indiceVincente];
-      // Avanza solo la squadra vincente ai round successivi
-      this.squadre = [this.squadre[indiceVincente]];
+      this.logSfide.push(`⚠️ Gruppo ${i / 4 + 1}: Pareggio tra ${vincitrici.length} squadre. Nessuna passa.`);
     }
-
-    this.roundCorrente++;
   }
+
+  if (nuoveSquadre.length === 1) {
+    this.vincitore = nuoveSquadre[0];
+    this.logSfide.push(`🎉 Torneo concluso! Squadra vincitrice: ${this.vincitore.map(c => c.name).join(', ')}`);
+  }
+
+  this.squadre = nuoveSquadre;
+  this.roundCorrente++;
+}
 
 
 }

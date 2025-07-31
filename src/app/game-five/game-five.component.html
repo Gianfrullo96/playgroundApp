@@ -4,6 +4,7 @@
     <div *ngIf="categoriaCorrente" class="categoria-estratta">
         <strong>Categoria estratta:</strong> {{ categoriaCorrente | titlecase }}
     </div>
+    <!-- BOTTONI -->
     <div class="button-container">
     <button (click)="eseguiSfide()" class="btn-round" [disabled]="vincitore !== null || squadre.length <= 1">
         Avvia Round
@@ -13,21 +14,20 @@
     </button>
     </div>
 
-
+    <!-- LOGGER  -->
     <div class="log-container" *ngIf="logSfide.length > 0">
         <h3>Log Sfide:</h3>
         <ul>
             <li *ngFor="let log of logSfide">{{ log }}</li>
         </ul>
     </div>
-
+    
     <div class="squadre-container">
         <div *ngFor="let squadra of squadre; let i = index" class="squadra-card">
             <h2>Sqd {{ i + 1 }}</h2>
             <div *ngFor="let cavalla of squadra" class="cavalla" [class.vincitrice]="
-    vincitore !== null &&
-    vincitore.includes(cavalla)
-  ">
+            vincitore !== null &&
+            vincitore.includes(cavalla)">
                 <img [src]="cavalla.image" [alt]="cavalla.name" />
                 <p>{{ cavalla.name }}</p>
 
