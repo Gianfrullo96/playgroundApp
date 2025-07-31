@@ -72,7 +72,7 @@
 .sidebar {
   display: none;
   flex-direction: column;
-  background: linear-gradient(180deg, #141428, #1a1a2e);
+  background: linear-gradient(180deg, #141428, #59597d);
   padding: 14px 10px;
   gap: 14px;
   border-right: 2px solid #ff4ecf;
@@ -142,8 +142,8 @@
   background: linear-gradient(145deg, #1e1e2f, #2a2a3d);
   border: 1px solid #ff4ecf;
   border-radius: 14px;
-  padding: 1.2rem 1.5rem;
-  min-width: 240px;
+  padding: 6px;
+  min-width: 200px;
   box-shadow: 0 4px 12px rgba(255, 78, 207, 0.25);
   transition: all 0.3s ease;
 }
@@ -359,13 +359,13 @@
     left: 0;
     top: 0; 
     height: calc(100%);
-    width: 60px;
+    width: 50px;
     background: #111122;
     z-index: 99;
   }
 
   .main-content {
-    margin-left: 60px; /* lascia spazio al menu laterale */
+    margin-left: 49px; /* lascia spazio al menu laterale */
   }
 }
 
