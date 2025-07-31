@@ -5,6 +5,7 @@ import { GameOneComponent } from './game-one/game-one.component';
 import { GameTwoComponent } from './game-two/game-two.component';
 import { GameThreeComponent } from './game-three/game-three.component';
 import { GameFourComponent } from './game-four/game-four.component';
+import { GameFiveComponent } from './game-five/game-five.component';
 
 
 const routes: Routes = [
@@ -12,11 +13,9 @@ const routes: Routes = [
   { path: 'game1', component: GameOneComponent },
   { path: 'game2', component: GameTwoComponent },
   { path: 'game3', component: GameThreeComponent },
-    { path: 'game4', component: GameFourComponent },
+  { path: 'game4', component: GameFourComponent },
+  { path: 'game5', component: GameFiveComponent },
 
-
-
-  // aggiungi altre rotte qui
 ];
 
 
@@ -27,4 +26,4 @@ const routes: Routes = [
 export class AppRoutingModule {
 
 
- }
+}
