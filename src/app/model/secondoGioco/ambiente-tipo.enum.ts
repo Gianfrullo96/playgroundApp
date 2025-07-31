@@ -6,5 +6,9 @@ export enum AmbienteTipo {
   Bagno = 'bagno',
   Garage = 'garage',
   Balcone = 'balcone',
-  Studio = 'studio'
+  Studio = 'studio',
+  Macchina ='macchina',
+  Ascensore ='ascensore',
+  Generic ='generic'
+  
 }

@@ -1,0 +1,53 @@
+<div class="torneo-container">
+    <h1>Torneo del Potere - Round {{ roundCorrente }}</h1>
+
+    <div *ngIf="categoriaCorrente" class="categoria-estratta">
+        <strong>Categoria estratta:</strong> {{ categoriaCorrente | titlecase }}
+    </div>
+    <!-- BOTTONI -->
+    <div class="button-container">
+    <button (click)="eseguiSfide()" class="btn-round" [disabled]="vincitore !== null || squadre.length <= 1">
+        Avvia Round
+    </button>
+    <button (click)="reset()" class="btn-reset">
+        Reset Torneo
+    </button>
+    </div>
+
+    <!-- LOGGER  -->
+    <div class="log-container" *ngIf="logSfide.length > 0">
+        <h3>Log Sfide:</h3>
+        <ul>
+            <li *ngFor="let log of logSfide">{{ log }}</li>
+        </ul>
+    </div>
+    
+    <div class="squadre-container">
+        <div *ngFor="let squadra of squadre; let i = index" class="squadra-card">
+            <h2>Sqd {{ i + 1 }}</h2>
+            <div *ngFor="let cavalla of squadra" class="cavalla" [class.vincitrice]="
+            vincitore !== null &&
+            vincitore.includes(cavalla)">
+                <img [src]="cavalla.image" [alt]="cavalla.name" />
+                <p>{{ cavalla.name }}</p>
+
+                <!-- Lista di tutte le statistiche -->
+                <ul class="stats-list">
+                    <li *ngFor="let cat of categorie">
+                        {{ cat | titlecase }}: {{ cavalla.stats[cat] }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="vincitore !== null" class="vincitore-final">
+        <h2>🏆 Squadra vincitrice del torneo:</h2>
+        <div class="cavalle">
+            <div *ngFor="let c of vincitore" class="cavalla vincitrice">
+                <img [src]="c.image" [alt]="c.name" />
+                <p>{{ c.name }}</p>
+            </div>
+        </div>
+    </div>
+</div>

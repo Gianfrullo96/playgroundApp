@@ -1,0 +1,145 @@
+.torneo-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.categoria-estratta {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  color: #34495e;
+}
+.button-container{
+    display: flex;
+    flex-direction: row;}
+
+button {
+  margin: 0 0.5rem 1.5rem 0.5rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  background-color: #2980b9;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #3498db;
+}
+
+.log-container {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #bdc3c7;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  background-color: #ecf0f1;
+  text-align: left;
+  border-radius: 8px;
+}
+
+.squadre-container {
+  display: flex;
+  flex-wrap: nowrap;        
+  gap: 2rem;
+  justify-content: flex-start; 
+  overflow-x: auto;         
+  max-width: 100%;         
+  padding-bottom: 1rem;     
+  scrollbar-width: thin;   
+}
+
+
+
+.squadra-card {
+  background-color: #f7f9fa;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ccc;
+  width: 260px;
+  min-height: 280px;
+}
+
+.squadra-card h2 {
+  margin-bottom: 1rem;
+  color: #34495e;
+}
+
+.cavalle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.cavalla {
+  width: 100px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  background-color: white;
+  box-shadow: 0 0 5px #ddd;
+  transition: box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.cavalla img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.4rem;
+}
+
+.cavalla p {
+  margin: 0;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.cavalla small {
+  color: #7f8c8d;
+  font-size: 0.85rem;
+}
+
+.cavalla.vincitrice {
+  box-shadow: 0 0 15px 3px gold;
+  background-color: #fff9e6;
+}
+
+.vincitore-final {
+  margin-top: 3rem;
+  border-top: 3px solid #f39c12;
+  padding-top: 2rem;
+}
+
+.vincitore-final h2 {
+  color: #d35400;
+  margin-bottom: 1.5rem;
+}
+
+.stats-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.stats-list li {
+  margin-bottom: 0.15rem;
+}

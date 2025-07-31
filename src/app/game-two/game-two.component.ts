@@ -17,6 +17,9 @@ export class GameTwoComponent implements OnInit {
 
   }
   ambienti: AmbienteGioco[] = [];
+    ambienti_nonna: AmbienteGioco[] = [];
+
+  
   roomOrderOk: boolean = false;
   roomOrder: string[] = [];
 
@@ -57,18 +60,45 @@ export class GameTwoComponent implements OnInit {
   }
 
   generateScenario() {
-    this.ambienti = [
+    this.ambienti_nonna = [
       new AmbienteGioco(AmbienteTipo.Sala, 'Sala', 4),
       new AmbienteGioco(AmbienteTipo.Letto, 'Camera da letto', 3),
       new AmbienteGioco(AmbienteTipo.Camera, 'Camera mia ', 1),
       new AmbienteGioco(AmbienteTipo.Cucina, 'Cucina', 2),
       new AmbienteGioco(AmbienteTipo.Garage, 'Garage', 1),
       new AmbienteGioco(AmbienteTipo.Bagno, 'Bagno Piccolo', 1),
-      new AmbienteGioco(AmbienteTipo.Bagno, 'bBgno grande', 2),
+      new AmbienteGioco(AmbienteTipo.Bagno, 'Bagno grande', 2),
       new AmbienteGioco(AmbienteTipo.Balcone, 'Balcone', 1),
       new AmbienteGioco(AmbienteTipo.Studio, 'Studio', 1),
       new AmbienteGioco(AmbienteTipo.Studio, 'Stanzino a lavoro', 1),
-
+      new AmbienteGioco(AmbienteTipo.Ascensore, 'Ascensore', 1),
+      new AmbienteGioco(AmbienteTipo.Macchina, 'Macchina', 2),
+      new AmbienteGioco(AmbienteTipo.Generic, 'Scale Palazzo', 1),
+      new AmbienteGioco(AmbienteTipo.Generic, 'Corridoio', 1),
+    ];
+    //nonna versione
+    this.ambienti = [
+      new AmbienteGioco(AmbienteTipo.Sala, 'Sala grande nonna P', 2),
+      new AmbienteGioco(AmbienteTipo.Sala, 'Sala Gianni', 2),
+      new AmbienteGioco(AmbienteTipo.Sala, 'Sala Gio dietro', 3),
+      new AmbienteGioco(AmbienteTipo.Sala, 'Sala Bibo Grande(UP)', 5),
+      new AmbienteGioco(AmbienteTipo.Sala, 'Sala Bibo Piccola(DOWN)', 2),
+      new AmbienteGioco(AmbienteTipo.Letto, 'Letto Nonna P', 2),
+      new AmbienteGioco(AmbienteTipo.Letto, 'Letto Camera Gianni', 1),
+      new AmbienteGioco(AmbienteTipo.Letto, 'Camera matrimoniale Gianni', 2),
+      new AmbienteGioco(AmbienteTipo.Cucina, 'Cucina Nonna Pier', 2),
+      new AmbienteGioco(AmbienteTipo.Cucina, 'Cucinetto dietro', 1),
+      new AmbienteGioco(AmbienteTipo.Cucina, 'Cucina Tania', 1),
+      new AmbienteGioco(AmbienteTipo.Garage, 'Cantina', 1),
+      new AmbienteGioco(AmbienteTipo.Garage, 'Garage', 1),
+      new AmbienteGioco(AmbienteTipo.Garage, 'Garage Gianni', 1),
+      new AmbienteGioco(AmbienteTipo.Garage, 'ScannoMaiali', 1),
+      new AmbienteGioco(AmbienteTipo.Bagno, 'Bagno Piccolo Nonna', 1),
+      new AmbienteGioco(AmbienteTipo.Bagno, 'Bagno Grande Nonna(UP)', 2),
+      new AmbienteGioco(AmbienteTipo.Bagno, 'Bagno Tania', 1),
+      new AmbienteGioco(AmbienteTipo.Studio, 'Tettoia Nonno', 1),
+      new AmbienteGioco(AmbienteTipo.Generic, 'Sottotettoia Nonno', 1),
+      new AmbienteGioco(AmbienteTipo.Generic, 'New Tettoia', 1),
     ];
 
     console.log('Ambienti inizializzati:', this.ambienti);
@@ -211,6 +241,12 @@ export class GameTwoComponent implements OnInit {
     'assist: LIMONE E ASSIST CULO',
     'assist: LIMONE E ASSIST TUO CULO',
     'assist: LECCHI FIGA E ASSIST TUO CULO',
+    'giocare con tette',
+    'leccare tette',
+    'spagnola',
+    'pisciata testa U a F',
+    'scopare ascella',
+
   ];
 
 

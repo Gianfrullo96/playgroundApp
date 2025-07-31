@@ -5,6 +5,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WomanGame2 } from '../model/secondoGioco/womanGame2';
 import { ARRAY_CAVALLE } from '../model/arrayCavalle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-four',
@@ -18,6 +19,11 @@ export class GameFourComponent implements OnInit, OnDestroy {
   intervalId: any;
   mode: 'auto' | 'manual' | null = null;
 
+
+    constructor(private router: Router) {
+  
+    }
+
   ngOnInit(): void {
     this.generateCavalle();
   }
@@ -25,7 +31,9 @@ export class GameFourComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.stopAuto();
   }
-
+  onGoToHome() {
+    this.router.navigate(["/"]);
+  }
   generateCavalle() {
      
   
