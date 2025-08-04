@@ -1,5 +1,5 @@
 .torneo-container {
-  max-width: 900px;
+  max-width: 1600px;
   margin: 2rem auto;
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -43,7 +43,7 @@ button:hover:not(:disabled) {
 }
 
 .log-container {
-  max-height: 150px;
+  max-height: 400px;
   overflow-y: auto;
   border: 1px solid #bdc3c7;
   padding: 1rem;

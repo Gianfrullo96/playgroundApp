@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ARRAY_CAVALLE, ARRAY_CAVALLE_CON_STATS } from '../model/arrayCavalle';
+import { ARRAY_CAVALLE_CON_STATS2 } from '../model/arrayCavalle';
 
 
 
@@ -11,7 +11,7 @@ export interface CavallaBase {
 }
 
 // Categorie delle sfide
-export const CATEGORIE = ['fisico', 'strategia', 'sopravvivenza', 'esibizione', 'intelligenza'] as const;
+export const CATEGORIE = ['faccia', 'corpo', 'culo', 'tette', 'sensualita', 'intelligenza','maiala'] as const;
 export type Categoria = typeof CATEGORIE[number];
 
 export interface Cavalla extends CavallaBase {
@@ -41,6 +41,27 @@ export class GameFiveComponent implements OnInit {
 
   categorie = CATEGORIE;
 
+
+  nomiBuffi = [
+  'Draghi Infuocati',
+  'Fenici Alate',
+  'Ninja Ombra',
+  'Robot Ribelli',
+  'Unicorni Arcobaleno',
+  'Lupi Lunari',
+  'Tigri Tempestose',
+  'Serpenti Sibilanti',
+  'Cavalli Stellari',
+  'Orsi Ribelli',
+  'Leoni Ruggenti',
+  'Gufi Saggi',
+  'Squali Veloci',
+  'Volpi Astute',
+  'Pirati Pazzi',
+  'Gladiatori Eroici'
+];
+
+
   ngOnInit(): void {
     this.reset();
   }
@@ -50,7 +71,7 @@ export class GameFiveComponent implements OnInit {
     this.vincitore = null;
     this.logSfide = [];
     //this.cavalleConStats = this.generaStatsPerCavalle([...ARRAY_CAVALLE]);
-    this.cavalleConStats = this.mapFromArrayCavalle([...ARRAY_CAVALLE_CON_STATS]);
+    this.cavalleConStats = this.mapFromArrayCavalle([...ARRAY_CAVALLE_CON_STATS2]);
     this.squadre = this.creaSquadre(this.cavalleConStats);
     this.categoriaCorrente = null;
   }
@@ -59,14 +80,17 @@ mapFromArrayCavalle(cavalle: (CavallaBase & Record<string, any>)[]): Cavalla[] {
   return cavalle.map(c => ({
     ...c,
     stats: {
-      fisico: c['fisico'],
-      strategia: c['strategia'],
-      sopravvivenza: c['sopravvivenza'],
-      esibizione: c['esibizione'],
+      faccia: c['faccia'],
+      corpo: c['corpo'],
+      culo: c['culo'],
+      tette: c['tette'],
+      sensualita: c['sensualita'],
       intelligenza: c['intelligenza'],
+      maiala:c['maiala']
     }
   }));
 }
+
 
 
 
@@ -105,7 +129,7 @@ mapFromArrayCavalle(cavalle: (CavallaBase & Record<string, any>)[]): Cavalla[] {
     return this.categorie[Math.floor(Math.random() * this.categorie.length)];
   }
 
-  eseguiSfide(): void {
+  eseguiSfideold(): void {
   this.logSfide = [];
   this.vincitore = null;
   this.categoriaCorrente = this.estraiCategoria();
@@ -142,6 +166,72 @@ mapFromArrayCavalle(cavalle: (CavallaBase & Record<string, any>)[]): Cavalla[] {
   this.squadre = nuoveSquadre;
   this.roundCorrente++;
 }
+
+
+eseguiSfide(): void {
+  this.logSfide = [];
+  this.vincitore = null;
+  this.categoriaCorrente = this.estraiCategoria();
+  
+  this.logSfide.push(`\n🎯 ROUND ${this.roundCorrente} - Categoria: ${this.categoriaCorrente.toUpperCase()}\n`);
+  
+  // Calcolo punteggio squadre e dettagli singoli
+  const gruppiConPunteggio: GruppoConPunteggio[] = this.squadre.map((squadra, index) => {
+    this.logSfide.push(`🔹 Squadra ${index + 1}:`);
+    
+    let punteggio = 0;
+    squadra.forEach((cavalla, idx) => {
+      const stat = cavalla.stats[this.categoriaCorrente!] ?? 0;
+      punteggio += stat;
+      this.logSfide.push(`    - ${cavalla.name}: ${stat} punti`);
+    });
+    
+    this.logSfide.push(`  → Totale Squadra ${index + 1}: ${punteggio} punti\n`);
+    
+    return { squadra, punteggio };
+  });
+  
+  const nuoveSquadre: Cavalla[][] = [];
+  
+  // Gruppi di 4 squadre per sfida
+  for (let i = 0; i < gruppiConPunteggio.length; i += 4) {
+    const gruppoDiGruppi = gruppiConPunteggio.slice(i, i + 4);
+    this.logSfide.push(`🛡️ Gruppo ${i / 4 + 1} - Sfida tra squadre ${i + 1} a ${i + gruppoDiGruppi.length}`);
+    
+    gruppoDiGruppi.forEach((g, idx) => {
+      const squadraIndex = this.squadre.indexOf(g.squadra);
+      this.logSfide.push(`    Squadra ${squadraIndex + 1} punteggio: ${g.punteggio}`);
+    });
+    
+    const max = Math.max(...gruppoDiGruppi.map(g => g.punteggio));
+    const vincitrici = gruppoDiGruppi.filter(g => g.punteggio === max);
+    
+    if (vincitrici.length === 1) {
+      nuoveSquadre.push(vincitrici[0].squadra);
+      const indiceVincente = this.squadre.indexOf(vincitrici[0].squadra);
+      this.logSfide.push(`🏆 Vince la squadra ${indiceVincente + 1} con ${max} punti\n`);
+    } else {
+      const squadrePareggio = vincitrici
+        .map(g => this.squadre.indexOf(g.squadra) + 1)
+        .join(', ');
+      this.logSfide.push(`⚠️ Pareggio tra squadre: ${squadrePareggio}. Nessuna passa.\n`);
+    }
+  }
+  
+  if (nuoveSquadre.length === 1) {
+    this.vincitore = nuoveSquadre[0];
+    this.logSfide.push(`🎉 TORNEO CONCLUSO! Squadra vincitrice: ${this.vincitore.map(c => c.name).join(', ')}\n`);
+  } else if (nuoveSquadre.length === 0) {
+    this.logSfide.push(`❌ Nessuna squadra passa al prossimo round.\n`);
+  } else {
+    this.logSfide.push(`➡️ Squadre passate al prossimo round: ${nuoveSquadre.length}\n`);
+  }
+  
+  this.squadre = nuoveSquadre;
+  this.roundCorrente++;
+}
+
+
 
 
 }

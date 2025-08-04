@@ -29,7 +29,7 @@
   <main class="main-content">
     <div class="ambienti-container" style="margin-top:20px">
       <div *ngFor="let ambiente of ambienti" class="ambiente-card" [attr.id]="sanitizeId(ambiente.nome)">
-        <h3>{{ ambiente.nome }} <span class="tipo">({{ ambiente.tipo }})</span></h3>
+        <h3>{{ ambiente.nome }} <span class="tipo">({{ ambiente.tipo }})</span> <span *ngIf=""></span></h3>
         <p>👥 Max occupanti: <strong>{{ ambiente.maxOccupanti }}</strong></p>
 
         <div *ngIf="ambiente.occupanti && ambiente.occupanti.length > 0" class="occupanti-list">

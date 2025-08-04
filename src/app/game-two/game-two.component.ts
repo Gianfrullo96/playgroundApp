@@ -17,14 +17,14 @@ export class GameTwoComponent implements OnInit {
 
   }
   ambienti: AmbienteGioco[] = [];
-    ambienti_nonna: AmbienteGioco[] = [];
+  ambienti_nonna: AmbienteGioco[] = [];
 
-  
+
   roomOrderOk: boolean = false;
   roomOrder: string[] = [];
 
   //nome- salute- voto- pic
-  women: WomanGame2[] = [new WomanGame2('', '', 10,'')];
+  women: WomanGame2[] = [new WomanGame2('', '', 10, '')];
 
   focusAmbiente(stanzaNome: string) {
     const id = this.sanitizeId(stanzaNome);
@@ -105,7 +105,7 @@ export class GameTwoComponent implements OnInit {
   }
 
   generateCavalle() {
-   
+
 
     // Mappa ogni oggetto donna nel formato Donna richiesto
     this.women = ARRAY_CAVALLE.map(
@@ -251,31 +251,31 @@ export class GameTwoComponent implements OnInit {
 
 
 
-  onGenerateAction(){
- this.ambienti.forEach(a => a.occupanti.forEach(el=> el.action = this.getRandomAction()))
+  onGenerateAction() {
+    this.ambienti.forEach(a => a.occupanti.forEach(el => el.action = this.getRandomAction()))
   }
-getRandomAction(): string {
-  const index = Math.floor(Math.random() * this.azioni.length);
-  return this.azioni[index];
-}
-helper: { name: string; dimensions: number } = {
-  name: '',
-  dimensions: 0
-};
+  getRandomAction(): string {
+    const index = Math.floor(Math.random() * this.azioni.length);
+    return this.azioni[index];
+  }
+  helper: { name: string; dimensions: number } = {
+    name: '',
+    dimensions: 0
+  };
 
 
-onGenerateHelper(){
+  onGenerateHelper() {
 
 
-  const randomName = faker.person.firstName('male'); // solo nomi maschili
-const randomNumber = faker.number.int({ min: 12, max: 25 });
+    const randomName = faker.person.firstName('male'); // solo nomi maschili
+    const randomNumber = faker.number.int({ min: 12, max: 25 });
 
-this.helper = {
-  name: randomName,
-  dimensions: randomNumber
-};
-  
-}
+    this.helper = {
+      name: randomName,
+      dimensions: randomNumber
+    };
+
+  }
 
 
 }
