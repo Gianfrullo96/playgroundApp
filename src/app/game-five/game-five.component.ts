@@ -11,7 +11,7 @@ export interface CavallaBase {
 }
 
 // Categorie delle sfide
-export const CATEGORIE = ['faccia', 'corpo', 'culo', 'tette', 'sensualita', 'intelligenza','maiala'] as const;
+export const CATEGORIE = ['faccia', 'corpo', 'culo', 'tette', 'sensualita', 'intelligenza','maiala','voto'] as const;
 export type Categoria = typeof CATEGORIE[number];
 
 export interface Cavalla extends CavallaBase {
@@ -86,7 +86,8 @@ mapFromArrayCavalle(cavalle: (CavallaBase & Record<string, any>)[]): Cavalla[] {
       tette: c['tette'],
       sensualita: c['sensualita'],
       intelligenza: c['intelligenza'],
-      maiala:c['maiala']
+      maiala:c['maiala'],
+      voto:c['voto']
     }
   }));
 }

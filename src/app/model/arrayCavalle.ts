@@ -935,7 +935,7 @@ export const ARRAY_CAVALLE_CON_STATS2 = [
     "voto": 8,
     "faccia": 8,
     "corpo": 8,
-    "culo": 7,
+    "culo": 6,
     "tette": 3,
     "sensualita": 8,
     "intelligenza": 8,
@@ -960,7 +960,7 @@ export const ARRAY_CAVALLE_CON_STATS2 = [
     "faccia": 8,
     "corpo": 9,
     "culo": 10,
-    "tette": 9,
+    "tette": 8,
     "sensualita": 8,
     "intelligenza": 9,
     "maiala": 6
@@ -972,7 +972,7 @@ export const ARRAY_CAVALLE_CON_STATS2 = [
     "faccia": 8,
     "corpo": 9,
     "culo": 7,
-    "tette": 7,
+    "tette": 6,
     "sensualita": 7,
     "intelligenza": 1,
     "maiala": 9
@@ -984,7 +984,7 @@ export const ARRAY_CAVALLE_CON_STATS2 = [
     "faccia": 8,
     "corpo": 8,
     "culo": 8,
-    "tette": 8,
+    "tette": 7,
     "sensualita": 7,
     "intelligenza": 7,
     "maiala": 6
@@ -996,7 +996,7 @@ export const ARRAY_CAVALLE_CON_STATS2 = [
     "faccia": 8,
     "corpo": 7,
     "culo": 5,
-    "tette": 8,
+    "tette": 7,
     "sensualita": 6,
     "intelligenza": 7,
     "maiala": 9
@@ -1068,7 +1068,7 @@ export const ARRAY_CAVALLE_CON_STATS2 = [
     "faccia": 9,
     "corpo": 9,
     "culo": 9,
-    "tette": 9,
+    "tette": 8,
     "sensualita": 9,
     "intelligenza": 6,
     "maiala": 6
